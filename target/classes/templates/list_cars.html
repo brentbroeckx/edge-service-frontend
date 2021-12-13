@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>All cars:</h2>
+
+<ul>
+    <li th:each="car : ${cars}"  th:text="${car.getMerk() + ' ' + car.getType() + ' ' + car.getLicensePlate()}">
+    </li>
+</ul>
+
+<table>
+    <thead>
+    <tr>
+        <th> Merk </th>
+        <th> Type </th>
+        <th> License-plate </th>
+        <th> Details </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${cars.empty}">
+        <td colspan="2"> No cars available </td>
+    </tr>
+    <tr th:each="car : ${cars}">
+        <td><span th:text="${car.getMerk()}"> Merk </span></td>
+        <td><span th:text="${car.getType()}"> Type </span></td>
+        <td><span th:text="${car.getLicensePlate()}"> License-plate </span></td>
+        <td><a th:href="'/inspections'" th:text="'Show inspections'"> Details </a></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/">Terug naar de homepagina</a>
+
+</body>
+</html>
