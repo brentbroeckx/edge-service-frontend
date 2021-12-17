@@ -23,8 +23,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${cars.empty}">
-        <td colspan="2"> No cars available </td>
+    <tr th:if="${cars.isEmpty()}">
+        <td colspan="4"> No cars available </td>
     </tr>
     <tr th:each="car : ${cars}">
         <td><span th:text="${car.getMerk()}"> Merk </span></td>
