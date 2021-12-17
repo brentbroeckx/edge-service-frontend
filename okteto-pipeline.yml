@@ -1,3 +1,2 @@
 deploy:
-  - okteto context update-kubeconfig
-  - kubectl apply -f k8s
+  - kubectl apply -f k8s/docker-compose.yaml
