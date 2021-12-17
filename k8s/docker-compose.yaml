@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: edge-service-frontend
-          image: inspectionedgehub/safety-edge-frontend
+          image: inspectionedgehub/edge-service-frontend
           impagePullPolicy: Always
           ports:
             - name: http
