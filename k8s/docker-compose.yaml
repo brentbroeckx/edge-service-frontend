@@ -15,7 +15,7 @@ spec:
         app: edge-service-frontend-server
     spec:
       containers:
-        - name: edge-service-frontend
+        - name: edge-service-frontend-server
           image: inspectionedgehub/edge-service-frontend
           impagePullPolicy: Always
           ports:
