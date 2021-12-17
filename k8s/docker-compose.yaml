@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: edge-service-frontend-deployment
+  labels:
+    app: edge-service-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: edge-service-frontend
+  template:
+    metadata:
+      labels:
+        app: edge-service-frontend
+    spec:
+      containers:
+        - name: edge-service-frontend
+          image: inspectionedgehub/safety-edge-frontend
+          impagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+              resources:
+                limits:
+                  cpu: 0.2
+                  memory: "200Mi"
+              env:
+                - name: SAFETY_EDGE_SERVICE_BASEURL
+                  value: "safety-edge-service-server:8050"
