@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: edge-service-frontend-deployment
   labels:
-    app: edge-service-frontend
+    app: edge-service-frontend-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: edge-service-frontend
+      app: edge-service-frontend-server
   template:
     metadata:
       labels:
-        app: edge-service-frontend
+        app: edge-service-frontend-server
     spec:
       containers:
         - name: edge-service-frontend
