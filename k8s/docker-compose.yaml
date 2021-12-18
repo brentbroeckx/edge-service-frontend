@@ -17,7 +17,7 @@ spec:
       containers:
         - name: edge-service-frontend-server
           image: inspectionedgehub/edge-service-frontend
-          impagePullPolicy: Always
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
