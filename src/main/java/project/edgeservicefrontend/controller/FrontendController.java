@@ -3,7 +3,7 @@ package project.edgeservicefrontend.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.tomcat.util.json.JSONParser;
-import org.openqa.selenium.json.Json;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jackson.JsonObjectSerializer;
@@ -105,7 +105,7 @@ public class FrontendController {
 
 
 
-            if (responseEntityCar != null) {
+            if (responseEntityCar.getBody() != null) {
                 CarInfo updateCar = responseEntityCar.getBody();
                 updateCar.setLicensePlate(car.getLicensePlate());
                 updateCar.setMerk(car.getMerk());
@@ -113,13 +113,13 @@ public class FrontendController {
                 updateCar.setEuroNorm(car.getEuroNorm());
                 updateCar.setPortier(car.getPortier());
 
-                    restTemplate.exchange("http://" + safetyEdgeBaseUrl + "/cars",
+                    restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/cars",
                             HttpMethod.PUT, new HttpEntity<>(updateCar),new ParameterizedTypeReference<CarInfo>() {
                             });
             } else {
                 CarInfo newCar = car;
                 CarInfo carInfo =
-                        restTemplate.postForObject("http://" + safetyEdgeBaseUrl + "/cars",
+                        restTemplate.postForObject("https://" + safetyEdgeBaseUrl + "/cars",
                                 newCar,CarInfo.class);
             }
 
