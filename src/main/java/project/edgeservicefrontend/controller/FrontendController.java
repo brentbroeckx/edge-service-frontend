@@ -6,6 +6,7 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.openqa.selenium.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import project.edgeservicefrontend.model.CarInfo;
 import project.edgeservicefrontend.model.Inspection;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -85,17 +87,23 @@ public class FrontendController {
     }
 
     @PostMapping("/car")
-    public String addCar(@ModelAttribute CarInfo car, final Model model) {
+    public String addCar(HttpServletRequest request, final Model model) {
+        String licensePlate = request.getParameter("licensePlate");
+        String merk = request.getParameter("merk");
+        String type = request.getParameter("type");
+        String euroNorm = request.getParameter("euroNorm");
+        CarInfo.PortierOptie portierOptie = CarInfo.PortierOptie.valueOf(request.getParameter("portier"));
 
-        String carLicense = car.getLicensePlate();
-        System.out.println(carLicense);
+        CarInfo car = new CarInfo(merk, type, licensePlate, euroNorm, portierOptie);
 
         if (car.getLicensePlate() != "" && car.getMerk() != "" && car.getType() != "") {
 
             ResponseEntity<CarInfo> responseEntityCar =
-                    restTemplate.exchange("http://" + safetyEdgeBaseUrl + "/cars/license_plate/{licensePlate}",
+                    restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/cars/license_plate/{licensePlate}",
                             HttpMethod.GET, null, new ParameterizedTypeReference<CarInfo>() {
-                            }, carLicense);
+                            }, licensePlate);
+
+
 
             if (responseEntityCar != null) {
                 CarInfo updateCar = responseEntityCar.getBody();
@@ -105,14 +113,23 @@ public class FrontendController {
                 updateCar.setEuroNorm(car.getEuroNorm());
                 updateCar.setPortier(car.getPortier());
 
-                restTemplate.exchange("http://" + safetyEdgeBaseUrl + "/cars",
-                        HttpMethod.PUT, new HttpEntity<>(updateCar),CarInfo.class);
+                    restTemplate.exchange("http://" + safetyEdgeBaseUrl + "/cars",
+                            HttpMethod.PUT, new HttpEntity<>(updateCar),new ParameterizedTypeReference<CarInfo>() {
+                            });
             } else {
                 CarInfo newCar = car;
                 CarInfo carInfo =
                         restTemplate.postForObject("http://" + safetyEdgeBaseUrl + "/cars",
                                 newCar,CarInfo.class);
             }
+
+            ResponseEntity<List<CarInfo>> cars =
+                    restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/cars",
+                            HttpMethod.GET, null, new ParameterizedTypeReference<List<CarInfo>>() {
+                            });
+
+
+            model.addAttribute("cars", cars.getBody());
 
             return "list_cars";
         } else {
