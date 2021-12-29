@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2 th:if="${car.getLicensePlate()} != ''" th:text="'Edit ' + ${car.getMerk()} + ' | ' + ${car.getLicensePlate()}"></h2>
+<h2 th:if="${car.getLicensePlate()} == ''" th:text="'Add Car'"></h2>
+
+<h4 th:text="'Error: ' + ${error}"></h4>
+
+
+<form action="#" th:action="@{/car}" th:object="${car}" method="post">
+    <p>Merk: <input type="text" th:field="*{merk}" th:value="${car.getMerk()}" /></p>
+    <p>Type: <input type="text" th:field="*{type}" th:value="${car.getType()}" /></p>
+    <p>License Plate: <input type="text" th:field="*{licensePlate}" th:value="${car.getLicensePlate()}" /></p>
+    <p>Euronorm: <input type="text" th:field="*{euroNorm}" th:value="${car.getEuroNorm()}" /></p>
+    <select name="portier" id="portier">
+        <option th:selected="${car.getPortier()} == 'TWEEDEURS'" value="TWEEDEURS" th:field="*{portier}">Tweedeurs</option>
+        <option th:selected="${car.getPortier()} == 'VIERDEURS'" value="VIERDEURS" th:field="*{portier}">Vierdeurs</option>
+    </select>
+
+    <p><input type="submit" value="Submit" />
+        <input type="reset" value="Reset" /></p>
+</form>
+
+<a href="/cars">Back to cars overview</a>
+
+</body>
+</html>
