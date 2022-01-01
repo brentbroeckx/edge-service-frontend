@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2 th:if="${inspection.getInspectionNumber()} != ''" th:text="'Edit ' + ${inspection.getInspectionNumber()} + ' | ' + ${inspection.getInspectionDate()}"></h2>
+<h2 th:if="${inspection.getInspectionNumber()} == null" th:text="'Add Inspection'"></h2>
+
+<h4 th:if="${error} != null" th:text="'Error: ' + ${error}"></h4>
+
+
+<form action="#" th:action="@{/inspection}" method="post">
+    <p>Inspection Number: <span th:text="${inspection.getInspectionNumber()!=''? inspection.getInspectionNumber():''}"></span> <input type="hidden" name="inspectionNumber" th:value="${inspection.getInspectionNumber()}" /> </p>
+    <p>License Plate: <span th:text="${inspection.getLicensePlate()!=''? inspection.getLicensePlate():''}"></span> <input type="hidden" name="licensePlate" th:value="${inspection.getLicensePlate()}" /> </p>
+    <p>Comment: <input type="text" name="comment" th:value="${inspection.getComment()}" /></p>
+    <input type="radio" name="passed" th:selected="${inspection.getPassed()} == true" th:value="true" th:text="Yes" />
+    <input type="radio" name="passed" th:selected="${inspection.getPassed()} == false" th:value="false" th:text="No" />
+    <p>Date: <input type="date" name="inspectionDate" th:value="${inspection.getInspectionDate()}" /></p>
+
+    <p><input type="submit" value="Submit" />
+</form>
+
+<a href="/cars">Back to cars overview</a>
+
+</body>
+</html>

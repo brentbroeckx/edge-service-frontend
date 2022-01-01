@@ -19,10 +19,9 @@ import project.edgeservicefrontend.model.CarInfo;
 import project.edgeservicefrontend.model.Inspection;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Controller
 public class FrontendController {
@@ -53,20 +52,6 @@ public class FrontendController {
         return "list_cars";
     }
 
-    @GetMapping("/inspections")
-    private String all_inspections_page(final Model model) {
-
-        ResponseEntity<List<Inspection>> inspections =
-                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections",
-                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
-                        });
-
-
-        model.addAttribute("inspections", inspections.getBody());
-
-        return "list_inspections";
-    }
-
     @GetMapping("/car/add")
     public String addCarPage(final Model model) {
         CarInfo car = new CarInfo("", "", "", "", CarInfo.PortierOptie.VIERDEURS);
@@ -87,7 +72,7 @@ public class FrontendController {
     }
 
     @PostMapping("/car")
-    public String addCar(HttpServletRequest request, final Model model) {
+    public String addEditCar(HttpServletRequest request, final Model model) {
         String licensePlate = request.getParameter("licensePlate");
         String merk = request.getParameter("merk");
         String type = request.getParameter("type");
@@ -139,6 +124,168 @@ public class FrontendController {
         }
 
 
+    }
+
+    @DeleteMapping("/car/delete/{licensePlate}")
+    public String deleteCar(@PathVariable String licensePlate, final Model model) {
+
+        restTemplate.delete("https://" + safetyEdgeBaseUrl + "/cars/license_plate/{licensePlate}"  ,licensePlate);
+
+        ResponseEntity<List<CarInfo>> cars =
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/cars",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<CarInfo>>() {
+                        });
+
+
+        model.addAttribute("cars", cars.getBody());
+        return "list_cars";
+
+    }
+
+
+    /* INSPECTION FUNCTIONS */
+
+    @GetMapping("/inspections")
+    private String all_inspections_page(final Model model) {
+
+        ResponseEntity<List<Inspection>> inspections =
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
+                        });
+
+
+        model.addAttribute("inspections", inspections.getBody());
+
+        return "list_inspections";
+    }
+
+    @GetMapping("/inspection/add")
+    public String addInspection(final Model model) {
+        LocalDate today = LocalDate.now();
+        Inspection inspection = new Inspection(null, "", "", false, today );
+
+        ResponseEntity<List<CarInfo>> cars =
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/cars",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<CarInfo>>() {
+                        });
+
+        List<String> licensePlates = new ArrayList<String>();
+
+        for (CarInfo car: cars.getBody()) {
+            if(car.getLicensePlate() != null) {
+                licensePlates.add(car.getLicensePlate());
+            }
+        }
+
+        model.addAttribute("inspection", inspection);
+        model.addAttribute("licensePlates", licensePlates);
+        return "crud_inspection";
+    }
+
+    @GetMapping("/inspection/edit/{inspectionNumber}")
+    public String editInspection(@PathVariable String inspectionNumber, final Model model) {
+        ResponseEntity<Inspection> inspection =
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections/inspection_number/{inspectionNumber}",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<Inspection>() {
+                        }, inspectionNumber);
+
+        ResponseEntity<List<CarInfo>> cars =
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/cars",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<List<CarInfo>>() {
+                        });
+
+        List<String> licensePlates = new ArrayList<>();
+
+        for (CarInfo car: cars.getBody()) {
+            if(car.getLicensePlate() != null) {
+                String licensePlate = car.getLicensePlate();
+                licensePlates.add(licensePlate);
+            }
+        }
+
+        model.addAttribute("inspection", inspection.getBody());
+        model.addAttribute("licensePlates", licensePlates);
+        model.addAttribute("error", "Licenseplate, merk and type are required");
+        return "crud_inspection";
+    }
+
+    @PostMapping("/inspection")
+    public String addEditInspection(HttpServletRequest request, final Model model) {
+        Long inspectionNumber = null;
+        if (request.getParameter("inspectionNumber") != "") {
+            inspectionNumber = Long.valueOf(request.getParameter("inspectionNumber"));
+        }
+        String licensePlate = request.getParameter("licensePlate");
+        String comment = request.getParameter("comment");
+        Boolean passed = Boolean.valueOf(request.getParameter("passed"));
+        LocalDate inspectionDate = LocalDate.parse(request.getParameter("inspectionDate"));
+
+        Inspection inspection = new Inspection(inspectionNumber, licensePlate, comment, passed, inspectionDate);
+
+        if (inspection.getInspectionNumber() != null && inspection.getPassed() != null && inspectionDate != null) {
+
+            ResponseEntity<Inspection> responseEntityInspection =
+                    restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections/inspection_number/{inspectionNumber}",
+                            HttpMethod.GET, null, new ParameterizedTypeReference<Inspection>() {
+                            }, inspection.getInspectionNumber());
+
+
+
+            if (responseEntityInspection.getBody() != null) {
+                Inspection updateInspection = responseEntityInspection.getBody();
+                updateInspection.setLicensePlate(licensePlate);
+                updateInspection.setComment(comment);
+                updateInspection.setPassed(passed);
+                updateInspection.setInspectionDate(inspectionDate);
+
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections",
+                        HttpMethod.PUT, new HttpEntity<>(updateInspection),new ParameterizedTypeReference<Inspection>() {
+                        });
+            }
+
+            ResponseEntity<List<Inspection>> inspections =
+                    restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections",
+                            HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
+                            });
+
+
+            model.addAttribute("inspections", inspections.getBody());
+
+            return "list_inspections";
+        } else if (inspection.getInspectionNumber() == null) {
+            Inspection newInspection = inspection;
+            Inspection inspectionPost =
+                    restTemplate.postForObject("https://" + safetyEdgeBaseUrl + "/inspections",
+                            newInspection,Inspection.class);
+
+            ResponseEntity<List<Inspection>> inspections =
+                    restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections",
+                            HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
+                            });
+
+
+            model.addAttribute("inspections", inspections.getBody());
+
+            return "list_inspections";
+        } else {
+            model.addAttribute("inspection", inspection);
+            return "crud_inspection";
+        }
+    }
+
+    @DeleteMapping("/inspection/delete/{inspectionNumber}")
+    public String deleteInspection(@PathVariable() String inspectionNumber ,final Model model) {
+
+        restTemplate.delete("https://" + safetyEdgeBaseUrl + "/inspections/inspection_number/{inspectionNumber}" , inspectionNumber);
+
+        ResponseEntity<List<Inspection>> inspections =
+                    restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections",
+                            HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
+                            });
+
+
+        model.addAttribute("inspections", inspections.getBody());
+        return "list_inspections";
     }
 
 

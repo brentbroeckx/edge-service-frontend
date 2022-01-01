@@ -9,13 +9,13 @@
 <h2 th:if="${car.getLicensePlate()} != ''" th:text="'Edit ' + ${car.getMerk()} + ' | ' + ${car.getLicensePlate()}"></h2>
 <h2 th:if="${car.getLicensePlate()} == ''" th:text="'Add Car'"></h2>
 
-<h4 th:text="'Error: ' + ${error}"></h4>
+<h4 th:if="${error} != null" th:text="'Error: ' + ${error}"></h4>
 
 
 <form action="#" th:action="@{/car}" method="post">
+    <p>License Plate: <span th:text="${car.getLicensePlate!=''? car.getLicensePlate:''}"></span> <input th:hidden="${car.getLicensePlate!=''?'true':'false'}" type="text" name="licensePlate" th:value="${car.getLicensePlate()}" /></p>
     <p>Merk: <input type="text" name="merk" th:value="${car.getMerk()}" /></p>
     <p>Type: <input type="text" name="type" th:value="${car.getType()}" /></p>
-    <p>License Plate: <span th:text="${car.getLicensePlate!=''? car.getLicensePlate:''}"></span> <input th:hidden="${car.getLicensePlate!=''?'true':'false'}" type="text" name="licensePlate" th:value="${car.getLicensePlate()}" /></p>
     <p>Euronorm: <input type="text" name="euroNorm" th:value="${car.getEuroNorm()}" /></p>
     <select name="portier" id="portier">
         <option th:selected="${car.getPortier()} == 'TWEEDEURS'" value="TWEEDEURS" >Tweedeurs</option>
