@@ -8,7 +8,9 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import project.edgeservicefrontend.libraries.WebDriverLibrary;
 
 import javax.annotation.PostConstruct;
 
@@ -26,7 +28,6 @@ public class CrudInspectionsPage {
 
     @FindBy(how = How.ID, using = "Submit")
     public WebElement submitButton;
-
 
     @Autowired
     private ChromeDriver chromeDriver;

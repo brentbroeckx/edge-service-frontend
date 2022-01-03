@@ -1,3 +1,5 @@
+project\edgeservicefrontend\pages\CrudCarsPage.class
+project\edgeservicefrontend\actions\CarsCrud.class
 project\edgeservicefrontend\libraries\WebDriverLibrary.class
 project\edgeservicefrontend\pages\HomePage.class
 project\edgeservicefrontend\pages\CrudInspectionsPage.class

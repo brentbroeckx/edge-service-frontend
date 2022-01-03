@@ -8,6 +8,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import project.edgeservicefrontend.libraries.WebDriverLibrary;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -27,8 +28,6 @@ public class ListInspectionsPage {
     @FindBy(how = How.LINK_TEXT, using = "Show Car")
     public WebElement linkShowCar;
 
-    @FindBy(how = How.LINK_TEXT, using = "Delete Inspection")
-    public WebElement linkDeleteInspection;
 
     @PostConstruct
     public void InitListInspectionsPage() {
@@ -41,9 +40,6 @@ public class ListInspectionsPage {
     }
 
     public void ClickEdit() {
-
-//        /html/body/table/tbody/tr[2]/td[4]/form/a[1]
-//        /html/body/table/tbody/tr[1]/td[4]/form/a[1]
 
         List<WebElement> allvalue = chromeDriver.findElements(By.xpath("/html/body/table/tbody/tr"));
         String searchValue = "Selenium Testing";
@@ -58,12 +54,6 @@ public class ListInspectionsPage {
         WebElement editButton = chromeDriver.findElement(By.xpath("/html/body/table/tbody/tr[" + editIndex + "]/td[4]/form/a[1]"));
         editButton.click();
 
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-//        linkEdit.click();
         System.out.println("Clicked edit for inspection");
     }
 
@@ -73,7 +63,18 @@ public class ListInspectionsPage {
     }
 
     public void ClickDelete() {
-        linkDeleteInspection.click();
+        List<WebElement> allvalue = chromeDriver.findElements(By.xpath("/html/body/table/tbody/tr"));
+        String searchValue = "Edit Selenium testing";
+        Integer editIndex = 0;
+
+        for(int i =0;i<allvalue.size();i++){
+            if (allvalue.get(i).getText().contains(searchValue)) {
+                editIndex = i + 1;
+            }
+        }
+        WebElement deleteButton = chromeDriver.findElement(By.xpath("/html/body/table/tbody/tr[" + editIndex + "]/td[4]/form/button"));
+        deleteButton.click();
+
         System.out.print("Clicked delete inspection");
     }
 

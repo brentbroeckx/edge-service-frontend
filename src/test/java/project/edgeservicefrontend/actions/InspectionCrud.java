@@ -2,7 +2,9 @@ package project.edgeservicefrontend.actions;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import project.edgeservicefrontend.libraries.WebDriverLibrary;
 import project.edgeservicefrontend.pages.CrudInspectionsPage;
 import project.edgeservicefrontend.pages.HomePage;
 import project.edgeservicefrontend.pages.ListInspectionsPage;
@@ -23,7 +25,6 @@ public class InspectionCrud {
     @Autowired
     private ChromeDriver chromeDriver;
 
-
     public void PerformAddInspection() {
         chromeDriver.navigate().to(appUrl);
 
@@ -38,6 +39,11 @@ public class InspectionCrud {
         listInspectionsPage.ClickEdit();
         crudInspectionsPage.ChangeForm();
 
+    }
+
+    public void DeleteSeleniumInspection() {
+        chromeDriver.navigate().to(appUrl + "/inspections");
+        listInspectionsPage.ClickDelete();
     }
 
 }

@@ -7,11 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
+
 @Configuration
 public class WebDriverLibrary {
 
     @Bean
-    public ChromeDriver getChromeDriver() {
+    public static ChromeDriver getChromeDriver() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
         ChromeDriverManager.getInstance().setup();
         return new ChromeDriver();

@@ -16,7 +16,7 @@ jobs:
           java-version: 11
 
       - name: Build
-        run: mvn -B clean test
+        run: mvn -B verify
 
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
