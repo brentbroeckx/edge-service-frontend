@@ -14,9 +14,7 @@
 
 <form action="#" th:action="@{/inspection}" method="post">
     <p>Inspection Number: <span th:text="${inspection.getInspectionNumber()!=''? inspection.getInspectionNumber():''}"></span> <input type="hidden" name="inspectionNumber" th:value="${inspection.getInspectionNumber()}" /> </p>
-    <select name="licensePlate" id="licensePlate">
-        <option th:each="licensePlate : ${licensePlates}" th:selected="${inspection.getLicensePlate()} == ${licensePlate}" th:value="${licensePlate}" th:text="${licensePlate}"></option>
-    </select>
+    <p>License Plate: <span th:text="${inspection.getLicensePlate()!=''? inspection.getLicensePlate():''}"></span> <input type="hidden" name="licensePlate" th:value="${inspection.getLicensePlate()}" /> </p>
     <p>Comment: <input type="text" name="comment" th:value="${inspection.getComment()}" /></p>
     <input type="radio" name="passed" th:selected="${inspection.getPassed()} == true" th:value="true" th:text="Yes" />
     <input type="radio" name="passed" th:selected="${inspection.getPassed()} == false" th:value="false" th:text="No" />
