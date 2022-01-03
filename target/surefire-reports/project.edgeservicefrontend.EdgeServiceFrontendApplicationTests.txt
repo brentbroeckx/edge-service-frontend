@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: project.edgeservicefrontend.EdgeServiceFrontendApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.008 s - in project.edgeservicefrontend.EdgeServiceFrontendApplicationTests

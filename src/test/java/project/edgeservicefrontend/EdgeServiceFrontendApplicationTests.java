@@ -22,7 +22,9 @@ class EdgeServiceFrontendApplicationTests {
 
     @Test
     void performAddInspection() {
+
         inspectionCrud.PerformAddInspection();
+        inspectionCrud.PerformEditInspection();
     }
 
 }
