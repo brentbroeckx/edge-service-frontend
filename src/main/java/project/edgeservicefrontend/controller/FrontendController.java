@@ -198,21 +198,19 @@ public class FrontendController {
 
         for (CarInfo car: cars.getBody()) {
             if(car.getLicensePlate() != null) {
-                String licensePlate = car.getLicensePlate();
-                licensePlates.add(licensePlate);
+                licensePlates.add(car.getLicensePlate());
             }
         }
 
         model.addAttribute("inspection", inspection.getBody());
         model.addAttribute("licensePlates", licensePlates);
-        model.addAttribute("error", "Licenseplate, merk and type are required");
         return "crud_inspection";
     }
 
     @PostMapping("/inspection")
     public String addEditInspection(HttpServletRequest request, final Model model) {
         Long inspectionNumber = null;
-        if (request.getParameter("inspectionNumber") != "") {
+        if (request.getParameter("inspectionNumber") != "" && request.getParameter("inspectionNumber") != null) {
             inspectionNumber = Long.valueOf(request.getParameter("inspectionNumber"));
         }
         String licensePlate = request.getParameter("licensePlate");

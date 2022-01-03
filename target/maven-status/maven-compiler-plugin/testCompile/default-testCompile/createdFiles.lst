@@ -1,0 +1,7 @@
+project\edgeservicefrontend\libraries\WebDriverLibrary.class
+project\edgeservicefrontend\pages\HomePage.class
+project\edgeservicefrontend\pages\CrudInspectionsPage.class
+project\edgeservicefrontend\actions\InspectionCrud.class
+project\edgeservicefrontend\EdgeServiceFrontendApplicationTests.class
+project\edgeservicefrontend\pages\ListInspectionsPage.class
+project\edgeservicefrontend\pages\ListCarsPage.class

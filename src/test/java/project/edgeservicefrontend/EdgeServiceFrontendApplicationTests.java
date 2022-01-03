@@ -1,13 +1,30 @@
 package project.edgeservicefrontend;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
+import project.edgeservicefrontend.actions.InspectionCrud;
+import project.edgeservicefrontend.pages.CrudInspectionsPage;
+import project.edgeservicefrontend.pages.HomePage;
+import project.edgeservicefrontend.pages.ListCarsPage;
+import project.edgeservicefrontend.pages.ListInspectionsPage;
 
 @SpringBootTest
 class EdgeServiceFrontendApplicationTests {
 
+    @Autowired
+    private InspectionCrud inspectionCrud;
+
+    @Value("${app.url}")
+    private String appUrl;
+
     @Test
-    void contextLoads() {
+    void performAddInspection() {
+
+        inspectionCrud.PerformAddInspection();
+        inspectionCrud.PerformEditInspection();
     }
 
 }
