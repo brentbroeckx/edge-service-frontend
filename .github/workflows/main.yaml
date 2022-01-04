@@ -17,7 +17,7 @@ jobs:
 
       - name: Install ChromeDriver
         run: |
-              chmod +w ./scripts/installChromeDriver.sh
+              chmod +x ./scripts/installChromeDriver.sh
                           ./scripts/installChromeDriver.sh
 
       - name: Build
