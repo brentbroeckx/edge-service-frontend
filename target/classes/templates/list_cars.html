@@ -8,11 +8,6 @@
 
 <h2>All cars:</h2>
 
-<ul>
-    <li th:each="car : ${cars}"  th:text="${car.getMerk() + ' ' + car.getType() + ' ' + car.getLicensePlate()}">
-    </li>
-</ul>
-
 <table>
     <thead>
     <tr>
