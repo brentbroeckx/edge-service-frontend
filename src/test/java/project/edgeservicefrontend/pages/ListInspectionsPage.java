@@ -20,7 +20,7 @@ public class ListInspectionsPage {
     @Autowired
     private WebDriver chromeDriver;
 
-    @FindBy(how = How.LINK_TEXT, using = "New Inspection")
+    @FindBy(how = How.ID, using = "NewInspection")
     public WebElement linkNewInspection;
 
     @FindBy(how = How.LINK_TEXT, using = "Edit")

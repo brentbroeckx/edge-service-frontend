@@ -24,19 +24,11 @@ public class WebDriverLibrary {
         WebDriver driver = null;
         WebDriverManager.chromedriver().browserVersion("96.0.4664.45").setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
         options.addArguments("enable-automation");
         options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        options.addArguments("--disable-infobars");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--disable-browser-side-navigation");
-        options.addArguments("--disable-gpu");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
 
         return driver;
-
-//        driver.get("https://www.google.com/");
 
     }
 

@@ -18,8 +18,8 @@
     <p>Type: <input type="text" name="type" th:value="${car.getType()}" /></p>
     <p>Euronorm: <input type="text" name="euroNorm" th:value="${car.getEuroNorm()}" /></p>
     <select name="portier" id="portier">
-        <option th:selected="${car.getPortier()} == 'TWEEDEURS'" value="TWEEDEURS" >Tweedeurs</option>
-        <option th:selected="${car.getPortier()} == 'VIERDEURS'" value="VIERDEURS" >Vierdeurs</option>
+        <option th:selected="${car.getPortier().toString()} == 'TWEEDEURS'" th:value="TWEEDEURS" >Tweedeurs</option>
+        <option th:selected="${car.getPortier().toString()} == 'VIERDEURS'" th:value="VIERDEURS" >Vierdeurs</option>
     </select>
 
     <p><input id="Submit" type="submit" value="Submit" /></p>

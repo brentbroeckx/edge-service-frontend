@@ -79,14 +79,13 @@
                 </executions>
                 <configuration>
                     <classpathDependencyExcludes>
-                        <classpathDependencyExcludes>${project.groupId}:${project.artifactId}</classpathDependencyExcludes>
+                        <classpathDependencyExcludes>${groupId}:${artifactId}</classpathDependencyExcludes>
                     </classpathDependencyExcludes>
                     <additionalClasspathElements>
                         <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
                     </additionalClasspathElements>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
