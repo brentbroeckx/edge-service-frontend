@@ -9,9 +9,6 @@
 <h2 th:if="${car.getLicensePlate()} != ''" th:text="'Edit ' + ${car.getMerk()} + ' | ' + ${car.getLicensePlate()}"></h2>
 <h2 th:if="${car.getLicensePlate()} == ''" th:text="'Add Car'"></h2>
 
-<h4 th:if="${error} != null" th:text="'Error: ' + ${error}"></h4>
-
-
 <form action="#" th:action="@{/car}" method="post">
     <p>License Plate: <span th:text="${car.getLicensePlate!=''? car.getLicensePlate:''}"></span> <input id="licensePlate" th:hidden="${car.getLicensePlate!=''?'true':'false'}" type="text" name="licensePlate" th:value="${car.getLicensePlate()}" /></p>
     <p>Merk: <input type="text" name="merk" th:value="${car.getMerk()}" /></p>
