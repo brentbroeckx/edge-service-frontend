@@ -22,7 +22,7 @@ public class WebDriverLibrary {
 //        return new ChromeDriver();
 
         WebDriver driver = null;
-        WebDriverManager.chromedriver().browserVersion("96.0.4664.45").setup();
+        WebDriverManager.chromedriver().browserVersion("77.0.3865.40").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         options.addArguments("enable-automation");
