@@ -1,6 +1,7 @@
 package project.edgeservicefrontend.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +18,7 @@ import java.util.List;
 public class ListCarsPage {
 
     @Autowired
-    private ChromeDriver chromeDriver;
+    private WebDriver chromeDriver;
 
     @FindBy(how = How.LINK_TEXT, using = "New car")
     private WebElement linkNewCar;

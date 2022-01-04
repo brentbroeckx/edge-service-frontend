@@ -1,5 +1,6 @@
 package project.edgeservicefrontend.pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
@@ -33,7 +34,7 @@ public class CrudCarsPage {
     public WebElement submitButton;
 
     @Autowired
-    private ChromeDriver chromeDriver;
+    private WebDriver chromeDriver;
 
     @PostConstruct
     public void InitCrudCarsPage() {

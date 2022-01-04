@@ -1,0 +1,59 @@
+# Created at 2022-01-04T01:11:23.312
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:398)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+# Created at 2022-01-04T01:11:26.385
+Unexpected IOException with stream: 2022-01-04 01:11:26.382  INFO 300 --- [           main] p.e.EdgeServiceFrontendApplicationTests  : Started EdgeServiceFrontendApplicationTests in 9.914 seconds (JVM running for 12.509)
+
+
+# Created at 2022-01-04T01:11:26.490
+Unexpected IOException: 5,1,project.edgeservicefrontend.EdgeServiceFrontendApplicationTests,performFrontEndTests,null,null,null
+
+
+# Created at 2022-01-04T01:11:28.719
+Unexpected IOException with stream: Clicked the list inspections link
+
+
+# Created at 2022-01-04T01:11:29.375
+Unexpected IOException with stream: Clicked new inspection button
+
+
+# Created at 2022-01-04T01:11:33.957
+Unexpected IOException with stream: Filling in form
+
+
+# Created at 2022-01-04T01:11:35.996
+Unexpected IOException with stream: Clicked edit for inspection
+
+
+# Created at 2022-01-04T01:11:42.157
+Unexpected IOException with stream: Clicked delete inspection
+
+# Created at 2022-01-04T01:11:42.939
+Unexpected IOException with stream: Clicked the list cars link
+
+
+# Created at 2022-01-04T01:11:43.160
+Unexpected IOException with stream: Clicked new car button
+
+
+# Created at 2022-01-04T01:11:49.016
+Unexpected IOException with stream: Clicked edit for car
+
+
+# Created at 2022-01-04T01:11:53.897
+Unexpected IOException with stream: Clicked delete car
+
+# Created at 2022-01-04T01:11:55.066
+Unexpected IOException: 6,1,project.edgeservicefrontend.EdgeServiceFrontendApplicationTests,performFrontEndTests,null,null,null
+
+
+# Created at 2022-01-04T01:11:55.075
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,project.edgeservicefrontend.EdgeServiceFrontendApplicationTests,null,null,null
+
+
