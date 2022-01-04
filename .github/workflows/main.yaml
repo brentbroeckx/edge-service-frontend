@@ -16,7 +16,7 @@ jobs:
           java-version: 11
 
       - name: Chromeversion check
-        run: google-crhome --version
+        run: google-chrome --version
 
       - name: Install ChromeDriver
         run: |
