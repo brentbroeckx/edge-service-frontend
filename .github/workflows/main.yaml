@@ -16,9 +16,7 @@ jobs:
           java-version: 11
 
       - name: Install ChromeDriver
-          run: |
-                chmod +w ./scripts/installChromeDriver.sh
-                            ./scripts/installChromeDriver.sh
+          run: scripts/installChromeDriver.sh
 
       - name: Build
         run: mvn test --file pom.xml
