@@ -22,28 +22,28 @@ public class InspectionCrud {
     @Value("${app.url}")
     private String appUrl;
 
-    @Autowired
-    private ChromeDriver chromeDriver;
-
-    public void PerformAddInspection() {
-        chromeDriver.navigate().to(appUrl);
-
-        homePage.ClickListInspections();
-        listInspectionsPage.ClickNewInspection();
-        crudInspectionsPage.FillForm();
-    }
-
-    public void PerformEditInspection() {
-        chromeDriver.navigate().to(appUrl + "/inspections");
-
-        listInspectionsPage.ClickEdit();
-        crudInspectionsPage.ChangeForm();
-
-    }
-
-    public void DeleteSeleniumInspection() {
-        chromeDriver.navigate().to(appUrl + "/inspections");
-        listInspectionsPage.ClickDelete();
-    }
+//    @Autowired
+//    private ChromeDriver chromeDriver;
+//
+//    public void PerformAddInspection() {
+//        chromeDriver.navigate().to(appUrl);
+//
+//        homePage.ClickListInspections();
+//        listInspectionsPage.ClickNewInspection();
+//        crudInspectionsPage.FillForm();
+//    }
+//
+//    public void PerformEditInspection() {
+//        chromeDriver.navigate().to(appUrl + "/inspections");
+//
+//        listInspectionsPage.ClickEdit();
+//        crudInspectionsPage.ChangeForm();
+//
+//    }
+//
+//    public void DeleteSeleniumInspection() {
+//        chromeDriver.navigate().to(appUrl + "/inspections");
+//        listInspectionsPage.ClickDelete();
+//    }
 
 }

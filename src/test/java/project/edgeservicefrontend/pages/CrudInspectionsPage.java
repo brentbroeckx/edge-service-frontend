@@ -30,34 +30,34 @@ public class CrudInspectionsPage {
     @FindBy(how = How.ID, using = "Submit")
     public WebElement submitButton;
 
-    @Autowired
-    private WebDriver chromeDriver;
-
-    @PostConstruct
-    public void InitCrudInspectionsPage() {
-        PageFactory.initElements(chromeDriver, this);
-    }
-
-    public void FillForm() {
-
-        Select licensePlate = new Select(licensePlateSelect);
-        licensePlate.selectByIndex(1);
-
-        commentInput.sendKeys("Selenium Testing");
-        passedRadioTrueInput.click();
-
-        submitButton.click();
-
-        System.out.println("Filling in form");
-    }
-
-    public void ChangeForm() {
-        commentInput.clear();
-        commentInput.sendKeys("Edit Selenium testing");
-        passedRadioTrueInput.click();
-
-        submitButton.click();
-    }
+//    @Autowired
+//    private WebDriver chromeDriver;
+//
+//    @PostConstruct
+//    public void InitCrudInspectionsPage() {
+//        PageFactory.initElements(chromeDriver, this);
+//    }
+//
+//    public void FillForm() {
+//
+//        Select licensePlate = new Select(licensePlateSelect);
+//        licensePlate.selectByIndex(1);
+//
+//        commentInput.sendKeys("Selenium Testing");
+//        passedRadioTrueInput.click();
+//
+//        submitButton.click();
+//
+//        System.out.println("Filling in form");
+//    }
+//
+//    public void ChangeForm() {
+//        commentInput.clear();
+//        commentInput.sendKeys("Edit Selenium testing");
+//        passedRadioTrueInput.click();
+//
+//        submitButton.click();
+//    }
 
 
 }

@@ -12,24 +12,20 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
-@Service
+@Component
 public class WebDriverLibrary {
 
-    @Bean
-    public static WebDriver getChromeDriver() {
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-//        ChromeDriverManager.getInstance().setup();
-//        return new ChromeDriver();
-
-        WebDriver driver = null;
-        WebDriverManager.chromedriver().browserVersion("96.0.4664.45").setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("enable-automation");
-        options.addArguments("--no-sandbox");
-        driver = new ChromeDriver();
-
-        return driver;
-
-    }
+//    @Bean
+//    public static WebDriver getChromeDriver() {
+//        WebDriver driver = null;
+//        WebDriverManager.chromedriver().browserVersion("96.0.4664.45").setup();
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("enable-automation");
+//        options.addArguments("--no-sandbox");
+//        driver = new ChromeDriver();
+//
+//        return driver;
+//
+//    }
 
 }

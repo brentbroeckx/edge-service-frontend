@@ -33,38 +33,38 @@ public class CrudCarsPage {
     @FindBy(how = How.ID, using = "Submit")
     public WebElement submitButton;
 
-    @Autowired
-    private WebDriver chromeDriver;
-
-    @PostConstruct
-    public void InitCrudCarsPage() {
-        PageFactory.initElements(chromeDriver, this);
-    }
-
-    public void FillForm() {
-
-        licensePlateInput.sendKeys("1-SELENIUM-7357");
-        merkInput.sendKeys("SELENIUM");
-        typeInput.sendKeys("TEST");
-        euroNormInput.sendKeys("4");
-
-        Select portier = new Select(portierSelect);
-        portier.selectByIndex(1);
-
-        submitButton.click();
-
-    }
-
-    public void ChangeForm() {
-        merkInput.clear();
-        merkInput.sendKeys("EDIT SELENIUM");
-        typeInput.clear();
-        typeInput.sendKeys("EDITING TEST");
-
-        Select portier = new Select(portierSelect);
-        portier.selectByIndex(0);
-
-        submitButton.click();
-    }
+//    @Autowired
+//    private WebDriver chromeDriver;
+//
+//    @PostConstruct
+//    public void InitCrudCarsPage() {
+//        PageFactory.initElements(chromeDriver, this);
+//    }
+//
+//    public void FillForm() {
+//
+//        licensePlateInput.sendKeys("1-SELENIUM-7357");
+//        merkInput.sendKeys("SELENIUM");
+//        typeInput.sendKeys("TEST");
+//        euroNormInput.sendKeys("4");
+//
+//        Select portier = new Select(portierSelect);
+//        portier.selectByIndex(1);
+//
+//        submitButton.click();
+//
+//    }
+//
+//    public void ChangeForm() {
+//        merkInput.clear();
+//        merkInput.sendKeys("EDIT SELENIUM");
+//        typeInput.clear();
+//        typeInput.sendKeys("EDITING TEST");
+//
+//        Select portier = new Select(portierSelect);
+//        portier.selectByIndex(0);
+//
+//        submitButton.click();
+//    }
 
 }
