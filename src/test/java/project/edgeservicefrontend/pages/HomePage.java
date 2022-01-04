@@ -16,8 +16,7 @@ import javax.annotation.PostConstruct;
 @Component
 public class HomePage {
 
-    @Autowired
-    private WebDriver chromeDriver;
+
 
     @FindBy(how = How.LINK_TEXT, using = "List cars")
     public WebElement linkListCars;
@@ -25,20 +24,23 @@ public class HomePage {
     @FindBy(how = How.LINK_TEXT, using = "List inspections")
     public WebElement linkListInspections;
 
-    @PostConstruct
-    public void InitHomePage() {
-        PageFactory.initElements(chromeDriver, this);
-    }
+//    @Autowired
+//    private WebDriver chromeDriver;
 
-    public void ClickListCars() {
-        linkListCars.click();
-        System.out.println("Clicked the list cars link");
-    }
-
-    public void ClickListInspections() {
-        linkListInspections.click();
-        System.out.println("Clicked the list inspections link");
-
-    }
+//    @PostConstruct
+//    public void InitHomePage() {
+//        PageFactory.initElements(chromeDriver, this);
+//    }
+//
+//    public void ClickListCars() {
+//        linkListCars.click();
+//        System.out.println("Clicked the list cars link");
+//    }
+//
+//    public void ClickListInspections() {
+//        linkListInspections.click();
+//        System.out.println("Clicked the list inspections link");
+//
+//    }
 
 }

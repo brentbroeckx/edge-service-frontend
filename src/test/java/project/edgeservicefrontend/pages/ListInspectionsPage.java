@@ -17,8 +17,8 @@ import java.util.List;
 @Component
 public class ListInspectionsPage {
 
-    @Autowired
-    private WebDriver chromeDriver;
+//    @Autowired
+//    private WebDriver chromeDriver;
 
     @FindBy(how = How.ID, using = "NewInspection")
     public WebElement linkNewInspection;
@@ -30,53 +30,53 @@ public class ListInspectionsPage {
     public WebElement linkShowCar;
 
 
-    @PostConstruct
-    public void InitListInspectionsPage() {
-        PageFactory.initElements(chromeDriver, this);
-    }
-
-    public void ClickNewInspection() {
-        linkNewInspection.click();
-        System.out.println("Clicked new inspection button");
-    }
-
-    public void ClickEdit() {
-
-        List<WebElement> allvalue = chromeDriver.findElements(By.xpath("/html/body/table/tbody/tr"));
-        String searchValue = "Selenium Testing";
-        Integer editIndex = 0;
-
-        for(int i =0;i<allvalue.size();i++){
-            if (allvalue.get(i).getText().contains(searchValue)) {
-                editIndex = i + 1;
-            }
-        }
-
-        WebElement editButton = chromeDriver.findElement(By.xpath("/html/body/table/tbody/tr[" + editIndex + "]/td[4]/form/a[1]"));
-        editButton.click();
-
-        System.out.println("Clicked edit for inspection");
-    }
-
-    public void ClickShowCar() {
-        linkShowCar.click();
-        System.out.println("Clicked show car for inspection");
-    }
-
-    public void ClickDelete() {
-        List<WebElement> allvalue = chromeDriver.findElements(By.xpath("/html/body/table/tbody/tr"));
-        String searchValue = "Edit Selenium testing";
-        Integer editIndex = 0;
-
-        for(int i =0;i<allvalue.size();i++){
-            if (allvalue.get(i).getText().contains(searchValue)) {
-                editIndex = i + 1;
-            }
-        }
-        WebElement deleteButton = chromeDriver.findElement(By.xpath("/html/body/table/tbody/tr[" + editIndex + "]/td[4]/form/button"));
-        deleteButton.click();
-
-        System.out.print("Clicked delete inspection");
-    }
+//    @PostConstruct
+//    public void InitListInspectionsPage() {
+//        PageFactory.initElements(chromeDriver, this);
+//    }
+//
+//    public void ClickNewInspection() {
+//        linkNewInspection.click();
+//        System.out.println("Clicked new inspection button");
+//    }
+//
+//    public void ClickEdit() {
+//
+//        List<WebElement> allvalue = chromeDriver.findElements(By.xpath("/html/body/table/tbody/tr"));
+//        String searchValue = "Selenium Testing";
+//        Integer editIndex = 0;
+//
+//        for(int i =0;i<allvalue.size();i++){
+//            if (allvalue.get(i).getText().contains(searchValue)) {
+//                editIndex = i + 1;
+//            }
+//        }
+//
+//        WebElement editButton = chromeDriver.findElement(By.xpath("/html/body/table/tbody/tr[" + editIndex + "]/td[4]/form/a[1]"));
+//        editButton.click();
+//
+//        System.out.println("Clicked edit for inspection");
+//    }
+//
+//    public void ClickShowCar() {
+//        linkShowCar.click();
+//        System.out.println("Clicked show car for inspection");
+//    }
+//
+//    public void ClickDelete() {
+//        List<WebElement> allvalue = chromeDriver.findElements(By.xpath("/html/body/table/tbody/tr"));
+//        String searchValue = "Edit Selenium testing";
+//        Integer editIndex = 0;
+//
+//        for(int i =0;i<allvalue.size();i++){
+//            if (allvalue.get(i).getText().contains(searchValue)) {
+//                editIndex = i + 1;
+//            }
+//        }
+//        WebElement deleteButton = chromeDriver.findElement(By.xpath("/html/body/table/tbody/tr[" + editIndex + "]/td[4]/form/button"));
+//        deleteButton.click();
+//
+//        System.out.print("Clicked delete inspection");
+//    }
 
 }
