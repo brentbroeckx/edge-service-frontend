@@ -22,9 +22,6 @@ class EdgeServiceFrontendApplicationTests {
     @Autowired
     private CarsCrud carsCrud;
 
-    @Autowired
-    private ChromeDriver chromeDriver;
-
     @Value("${app.url}")
     private String appUrl;
 
