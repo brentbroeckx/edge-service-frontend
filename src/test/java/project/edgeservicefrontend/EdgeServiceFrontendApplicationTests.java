@@ -1,6 +1,7 @@
 package project.edgeservicefrontend;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,9 @@ class EdgeServiceFrontendApplicationTests {
 
     @Autowired
     private CarsCrud carsCrud;
+
+    @Autowired
+    private ChromeDriver chromeDriver;
 
     @Value("${app.url}")
     private String appUrl;
