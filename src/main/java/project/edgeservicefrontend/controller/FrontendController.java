@@ -119,7 +119,6 @@ public class FrontendController {
             return "list_cars";
         } else {
             model.addAttribute("car", car);
-            model.addAttribute("error", "Licenseplate, merk and type are required");
             return "crud_car";
         }
 

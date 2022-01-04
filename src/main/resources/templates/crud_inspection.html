@@ -9,9 +9,6 @@
 <h2 th:if="${inspection.getInspectionNumber()} != null" th:text="'Edit ' + ${inspection.getInspectionNumber()} + ' | ' + ${inspection.getInspectionDate()}"></h2>
 <h2 th:if="${inspection.getInspectionNumber()} == null" th:text="'Add Inspection'"></h2>
 
-<h4 th:if="${error} != null" th:text="'Error: ' + ${error}"></h4>
-
-
 <form action="#" th:action="@{/inspection}" method="post">
     <p th:if="${inspection.getInspectionNumber() != null}">Inspection Number: <span th:text="${inspection.getInspectionNumber()!=''? inspection.getInspectionNumber():''}"></span> <input type="hidden" name="inspectionNumber" th:value="${inspection.getInspectionNumber()}" /> </p>
     <p>License Plate: <span th:text="${inspection.getLicensePlate() != '' ? inspection.getLicensePlate(): ''}"></span>
