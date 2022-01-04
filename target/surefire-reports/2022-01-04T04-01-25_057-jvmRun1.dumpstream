@@ -1,0 +1,25 @@
+# Created at 2022-01-04T04:01:38.873
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:398)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+# Created at 2022-01-04T04:01:39.718
+Unexpected IOException with stream: Filling in form
+
+
+# Created at 2022-01-04T04:01:42.214
+Unexpected IOException with stream: Clicked edit for inspection
+
+
+# Created at 2022-01-04T04:01:47.013
+Unexpected IOException: 7,1,project.edgeservicefrontend.EdgeServiceFrontendApplicationTests,performFrontEndTests,null,chrome not reachable\000A  (Session info: chrome=96.0.4664.110)\000ABuild info: version: '3.141.59'\002C revision: 'e82be7d358'\002C time: '2018-11-14T08:17:03'\000ASystem info: host: 'DESKTOP-CQDADKS'\002C ip: '172.19.144.1'\002C os.name: 'Windows 10'\002C os.arch: 'amd64'\002C os.version: '10.0'\002C java.version: '17'\000ADriver info: org.openqa.selenium.chrome.ChromeDriver\000ACapabilities {acceptInsecureCerts: false\002C browserName: chrome\002C browserVersion: 96.0.4664.110\002C chrome: {chromedriverVersion: 96.0.4664.45 (76e4c1bb2ab46...\002C userDataDir: C:\005CUsers\005Cbrent\005CAppData\005CLoca...}\002C goog:chromeOptions: {debuggerAddress: localhost:53476}\002C javascriptEnabled: true\002C networkConnectionEnabled: false\002C pageLoadStrategy: normal\002C platform: WINDOWS\002C platformName: WINDOWS\002C proxy: Proxy()\002C setWindowRect: true\002C strictFileInteractability: false\002C timeouts: {implicit: 0\002C pageLoad: 300000\002C script: 30000}\002C unhandledPromptBehavior: dismiss and notify\002C webauthn:extension:credBlob: true\002C webauthn:extension:largeBlob: true\002C webauthn:virtualAuthenticators: true}\000ASession ID: 4410427783a2a15ce360082f7dd3b4c8,null,chrome not reachable\000A  (Session info: chrome=96.0.4664.110)\000ABuild info: version: '3.141.59'\002C revision: 'e82be7d358'\002C time: '2018-11-14T08:17:03'\000ASystem info: host: 'DESKTOP-CQDADKS'\002C ip: '172.19.144.1'\002C os.name: 'Windows 10'\002C os.arch: 'amd64'\002C os.version: '10.0'\002C java.version: '17'\000ADriver info: org.openqa.selenium.chrome.ChromeDriver\000ACapabilities {acceptInsecureCerts: false\002C browserName: chrome\002C browserVersion: 96.0.4664.110\002C chrome: {chromedriverVersion: 96.0.4664.45 (76e4c1bb2ab46...\002C userDataDir: C:\005CUsers\005Cbrent\005CAppData\005CLoca...}\002C goog:chromeOptions: {debuggerAddress: localhost:53476}\002C javascriptEnabled: true\002C networkConnectionEnabled: false\002C pageLoadStrategy: normal\002C platform: WINDOWS\002C platformName: WINDOWS\002C proxy: Proxy()\002C setWindowRect: true\002C strictFileInteractability: false\002C timeouts: {implicit: 0\002C pageLoad: 300000\002C script: 30000}\002C unhandledPromptBehavior: dismiss and notify\002C webauthn:extension:credBlob: true\002C webauthn:extension:largeBlob: true\002C webauthn:virtualAuthenticators: true}\000ASession ID: 4410427783a2a15ce360082f7dd3b4c8,EdgeServiceFrontendApplicationTests.performFrontEndTests:33 \00BB WebDriver chrome...,org.openqa.selenium.WebDriverException: \000Achrome not reachable\000A  (Session info: chrome=96.0.4664.110)\000ABuild info: version: '3.141.59'\002C revision: 'e82be7d358'\002C time: '2018-11-14T08:17:03'\000ASystem info: host: 'DESKTOP-CQDADKS'\002C ip: '172.19.144.1'\002C os.name: 'Windows 10'\002C os.arch: 'amd64'\002C os.version: '10.0'\002C java.version: '17'\000ADriver info: org.openqa.selenium.chrome.ChromeDriver\000ACapabilities {acceptInsecureCerts: false\002C browserName: chrome\002C browserVersion: 96.0.4664.110\002C chrome: {chromedriverVersion: 96.0.4664.45 (76e4c1bb2ab46...\002C userDataDir: C:\005CUsers\005Cbrent\005CAppData\005CLoca...}\002C goog:chromeOptions: {debuggerAddress: localhost:53476}\002C javascriptEnabled: true\002C networkConnectionEnabled: false\002C pageLoadStrategy: normal\002C platform: WINDOWS\002C platformName: WINDOWS\002C proxy: Proxy()\002C setWindowRect: true\002C strictFileInteractability: false\002C timeouts: {implicit: 0\002C pageLoad: 300000\002C script: 30000}\002C unhandledPromptBehavior: dismiss and notify\002C webauthn:extension:credBlob: true\002C webauthn:extension:largeBlob: true\002C webauthn:virtualAuthenticators: true}\000ASession ID: 4410427783a2a15ce360082f7dd3b4c8\000A\0009at project.edgeservicefrontend.EdgeServiceFrontendApplicationTests.performFrontEndTests(EdgeServiceFrontendApplicationTests.java:33)\000A
+
+
+# Created at 2022-01-04T04:01:47.019
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,project.edgeservicefrontend.EdgeServiceFrontendApplicationTests,null,null,null
+
+
