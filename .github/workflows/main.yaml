@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: selenium/standalone-chrome:96.0.4664.45-chromedriver-96.0.4664.45
     name: Java 11 build, test, deliver container
     steps:
       - name: Check out repository
