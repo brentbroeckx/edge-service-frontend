@@ -4,11 +4,26 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
 
-<h2>All inspections:</h2>
+<div style="background-color: deepskyblue; display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: black; margin-left: 5px;">
+        <a style="text-decoration: none; font-weight: bold;" href="/">Advanced Programming Challenge</a>
+    </h3>
+    <ul style="list-style: none; display:flex;">
+        <li style="color: black; padding: 10px;">
+            <a style="text-decoration: none" href="/cars">List cars</a>
+        </li>
+        <li style="color: black; padding: 10px;">
+            <a style="text-decoration: none" href="/inspections">List inspections</a>
+        </li>
+    </ul>
+</div>
 
-<table>
+<h2 style="text-align: center;" th:if="${inspectionHistory.getMerk()} == null">All inspections:</h2>
+<h2 style="text-align: center;" th:if="${inspectionHistory.getMerk()} != null">Inspection History of <b th:text="${inspectionHistory.getMerk()} + ' ' + ${inspectionHistory.getType()}"></b> </h2>
+
+<table style="margin: auto">
     <thead>
     <tr>
         <th> Date </th>
@@ -18,10 +33,24 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${inspections.isEmpty()}">
+    <tr th:if="${inspections.isEmpty()} and ${inspectionHistory.getInspections()} == null">
         <td colspan="4"> No inspections available </td>
     </tr>
-    <tr th:each="inspection : ${inspections}">
+    <tr th:if="${!inspections.isEmpty()}" th:each="inspection : ${inspections}">
+        <td><span th:text="${inspection.getInspectionDate()}"> Date </span></td>
+        <td><span th:text="${inspection.getLicensePlate()}"> License-plate </span></td>
+        <td><span th:text="${inspection.getComment()}"> Comment </span></td>
+        <td>
+            <form th:action="@{'/inspection/delete/' + ${inspection.getInspectionNumber()}}" th:method="delete">
+                <a th:href="@{'/inspection/edit/' + ${inspection.getInspectionNumber()}}" th:text="'Edit'"></a>
+                <span style="padding-left: 5px; padding-right: 5px; " >|</span>
+                <a th:href="'/car/detail/' + ${inspection.getLicensePlate()}" th:text="'Show car'"></a>
+                <span style="padding-left: 5px; padding-right: 5px; " >|</span>
+                <button type="submit" th:text="'Delete'"></button>
+            </form>
+        </td>
+    </tr>
+    <tr th:if="${inspectionHistory.getInspections()} != null" th:each="inspection : ${inspectionHistory.getInspections()}">
         <td><span th:text="${inspection.getInspectionDate()}"> Date </span></td>
         <td><span th:text="${inspection.getLicensePlate()}"> License-plate </span></td>
         <td><span th:text="${inspection.getComment()}"> Comment </span></td>
@@ -38,11 +67,15 @@
     </tbody>
 </table>
 
-<button>
-    <a id="NewInspection" href="/inspection/add">New Inspection</a>
-</button>
+<div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
+    <button th:if="${inspectionHistory.getInspections()} == null">
+        <a style="text-decoration: none" id="NewInspection" href="/inspection/add">New Inspection</a>
+    </button>
+</div>
+
 <br>
-<a href="/">Terug naar de homepagina</a>
+<a style="margin-left: 20px;" th:if="${inspectionHistory.getInspections()} != null" href="/cars">Back to all cars list</a>
+<a style="margin-left: 20px;" th:if="${inspectionHistory.getInspections()} == null" href="/">Back to homepage</a>
 
 </body>
 </html>
