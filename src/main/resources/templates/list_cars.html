@@ -4,11 +4,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
 
-<h2>All cars:</h2>
+<div style="background-color: deepskyblue; display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: black; margin-left: 5px;">
+        <a style="text-decoration: none; font-weight: bold;" href="/">Advanced Programming Challenge</a>
+    </h3>
+    <ul style="list-style: none; display:flex;">
+        <li style="color: black; padding: 10px;">
+            <a style="text-decoration: none" href="/cars">List cars</a>
+        </li>
+        <li style="color: black; padding: 10px;">
+            <a style="text-decoration: none" href="/inspections">List inspections</a>
+        </li>
+    </ul>
+</div>
 
-<table>
+<h2 style="text-align: center">All cars:</h2>
+
+<table style="margin: auto">
     <thead>
     <tr>
         <th> Merk </th>
@@ -29,7 +43,9 @@
             <form th:action="@{'/car/delete/' + ${car.getLicensePlate()}}" th:method="delete">
                 <a th:href="@{'/car/edit/' + ${car.getLicensePlate()}}" th:text="'Edit'"></a>
                 <span style="padding-left: 5px; padding-right: 5px; " >|</span>
-                <a th:href="'/inspections'" th:text="'Show inspections'"></a>
+                <a th:href="@{'/car/detail/' + ${car.getLicensePlate()}}" th:text="'Details'"></a>
+                <span style="padding-left: 5px; padding-right: 5px; " >|</span>
+                <a th:href="@{'/inspections/' + ${car.getLicensePlate()}}" th:text="'Show inspections'"></a>
                 <span style="padding-left: 5px; padding-right: 5px; " >|</span>
                 <button type="submit" th:text="'Delete'"></button>
             </form>
@@ -40,13 +56,16 @@
     </tbody>
 </table>
 
-<button>
-    <a href="/car/add">New car</a>
-</button>
+<div style="margin-top: 10px; display: flex; justify-content: center; align-items: center;">
+    <button style="margin-top: 10px; margin-bottom: 10px;">
+        <a style="text-decoration: none" href="/car/add">New car</a>
+    </button>
+</div>
+
 
 <br>
 
-<a href="/">Terug naar de homepagina</a>
+<a style="margin-left: 20px;" href="/">Terug naar de homepagina</a>
 
 </body>
 </html>

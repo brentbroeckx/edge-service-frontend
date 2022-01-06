@@ -4,7 +4,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body style="margin: 0; padding: 0;">
+
+<div style="background-color: deepskyblue; display: flex; justify-content: space-between; align-items: center;">
+    <h3 style="color: black; margin-left: 5px;">
+        <a style="text-decoration: none; font-weight: bold;" href="/">Advanced Programming Challenge</a>
+    </h3>
+    <ul style="list-style: none; display:flex;">
+        <li style="color: black; padding: 10px;">
+            <a style="text-decoration: none" href="/cars">List cars</a>
+        </li>
+        <li style="color: black; padding: 10px;">
+            <a style="text-decoration: none" href="/inspections">List inspections</a>
+        </li>
+    </ul>
+</div>
 
 <h2 th:if="${car.getLicensePlate()} != ''" th:text="'Edit ' + ${car.getMerk()} + ' | ' + ${car.getLicensePlate()}"></h2>
 <h2 th:if="${car.getLicensePlate()} == ''" th:text="'Add Car'"></h2>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import project.edgeservicefrontend.model.CarInfo;
 import project.edgeservicefrontend.model.Inspection;
+import project.edgeservicefrontend.model.InspectionHistory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -141,6 +142,20 @@ public class FrontendController {
 
     }
 
+    @GetMapping("/car/detail/{licensePlate}")
+    public String detailCar(@PathVariable String licensePlate, final Model model) {
+
+        ResponseEntity<CarInfo> responseEntityCar =
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/cars/license_plate/{licensePlate}",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<CarInfo>() {
+                        }, licensePlate);
+
+        CarInfo car = responseEntityCar.getBody();
+        model.addAttribute("car", car);
+
+        return "detail_car";
+    }
+
 
     /* INSPECTION FUNCTIONS */
 
@@ -152,7 +167,7 @@ public class FrontendController {
                         HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
                         });
 
-
+        model.addAttribute("inspectionHistory", new InspectionHistory());
         model.addAttribute("inspections", inspections.getBody());
 
         return "list_inspections";
@@ -245,7 +260,7 @@ public class FrontendController {
                             HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
                             });
 
-
+            model.addAttribute("inspectionHistory", new InspectionHistory());
             model.addAttribute("inspections", inspections.getBody());
 
             return "list_inspections";
@@ -260,7 +275,7 @@ public class FrontendController {
                             HttpMethod.GET, null, new ParameterizedTypeReference<List<Inspection>>() {
                             });
 
-
+            model.addAttribute("inspectionHistory", new InspectionHistory());
             model.addAttribute("inspections", inspections.getBody());
 
             return "list_inspections";
@@ -281,7 +296,27 @@ public class FrontendController {
                             });
 
 
+        model.addAttribute("inspectionHistory", new InspectionHistory());
         model.addAttribute("inspections", inspections.getBody());
+        return "list_inspections";
+    }
+
+    @GetMapping("/inspections/{licensePlate}")
+    public String getInspectionsByLicensePlate(@PathVariable String licensePlate, final Model model) {
+
+        InspectionHistory inspectionHistory= new InspectionHistory();
+        ResponseEntity<InspectionHistory> responseEntityInspections =
+                restTemplate.exchange("https://" + safetyEdgeBaseUrl + "/inspections/license_plate/{licensePlate}",
+                        HttpMethod.GET, null, new ParameterizedTypeReference<InspectionHistory>() {
+                        }, licensePlate);
+
+        inspectionHistory = responseEntityInspections.getBody();
+
+        List<Inspection> inspections = new ArrayList<>();
+
+        model.addAttribute("inspectionHistory", inspectionHistory);
+        model.addAttribute("inspections", inspections);
+
         return "list_inspections";
     }
 

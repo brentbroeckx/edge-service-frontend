@@ -20,29 +20,12 @@
     </ul>
 </div>
 
-<h2 style="text-align: center">Homepage</h2>
-<h4 style="margin-left: 15px; margin-top: 20px;">What can I do ?</h4>
+<h2 style="text-align: center;" th:text="${car.getMerk()} + ' ' + ${car.getType()} + ' | ' +${car.getLicensePlate()}"></h2>
 
-<ul>
-    <li>
-        <p style="margin-left: 15px; text-align: start; margin-top: 10px; width: 60%;">
-            Click on the links in the navigation bar to see a list of cars
-            or look at all the inspections that have been done.
-        </p>
-    </li>
-    <li>
-        <p style="margin-left: 15px; text-align: start; margin-top: 10px; width: 60%;">
-            You can add, edit, delete, ... cars and inspections.
-        </p>
-    </li>
-    <li>
-        <p style="margin-left: 15px; text-align: start; margin-top: 10px; width: 60%;">
-            You can look at the details of a car
-            or the inspections that have been done for a specific car
-        </p>
-    </li>
-</ul>
+<p style="margin-left: 25%;" th:text="'Portier: ' + ${car.getPortier()}"></p>
+<p style="margin-left: 25%;" th:text="'Euronorm: ' + ${car.getEuroNorm()}"></p>
 
+<a style="margin-left: 20px;" href="/cars">Back to cars list</a>
 
 </body>
 </html>
