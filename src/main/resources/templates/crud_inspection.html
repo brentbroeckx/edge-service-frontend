@@ -32,6 +32,7 @@
     </p>
 
     <p>Comment: <input type="text" name="comment" th:value="${inspection.getComment()}" /></p>
+    <p>Passed : </p>
     <input type="radio" id="radioTrue" name="passed"  th:checked="${inspection.getPassed()} == true" th:value="true" th:text="Yes" />
     <input type="radio" id="radioFalse" name="passed" th:checked="${inspection.getPassed()} == false" th:value="false" th:text="No" />
     <p>Date: <input type="date" name="inspectionDate" th:value="${inspection.getInspectionDate()}" /></p>
